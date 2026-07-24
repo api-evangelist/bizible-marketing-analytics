@@ -1,8 +1,23 @@
 aid: bizible-marketing-analytics
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bizible-marketing-analytics.png
 name: Bizible Marketing Analytics
-description: Bizible Marketing Analytics is a company surfaced as a portfolio company of techstars and
-  added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: Bizible was a B2B marketing attribution and revenue analytics platform that connected marketing
+  activity to pipeline and revenue across advertising, web, CRM, and marketing-automation channels. Acquired
+  by Marketo in 2018 and subsequently by Adobe, the product now ships as Adobe Marketo Measure (formerly
+  Bizible); the bizible.com domain 301-redirects to Adobe and its product documentation has moved to the
+  Adobe Experience League. It has no standalone public developer portal, OpenAPI, or API reference of its
+  own — integration is handled through Adobe/Marketo Measure and CRM connectors.
 url: https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,9 +27,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
+- Marketing
+- Analytics
+- Marketing Attribution
+- Revenue Analytics
+- B2B
+- Adobe
+- Marketo
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -22,5 +44,14 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/bizible-marketing-analytics-domain-security.yml
+- type: Documentation
+  url: https://experienceleague.adobe.com/en/docs/marketo-measure/using/home
 - type: Website
   url: https://bizible.com/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
