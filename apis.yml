@@ -27,7 +27,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-13'
 tags:
 - Company
 - Marketing
@@ -50,8 +50,42 @@ common:
   url: https://experienceleague.adobe.com/en/docs/marketo-measure/using/home
 - type: Website
   url: https://bizible.com/
+- type: Packages
+  url: packages/bizible-marketing-analytics-packages.yml
+- type: Components
+  url: components/bizible-marketing-analytics-components.yml
+- type: ChangeLog
+  url: changelog/bizible-marketing-analytics-changelog.yml
+- type: Lifecycle
+  url: lifecycle/bizible-marketing-analytics-lifecycle.yml
+- type: Conformance
+  url: conformance/bizible-marketing-analytics-conformance.yml
+- type: Plans
+  url: plans/bizible-marketing-analytics-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bizible-marketing-analytics-rate-limits.yml
+- type: LLMsTxt
+  url: llms/bizible-marketing-analytics-llms.txt
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: minimal
+  artifacts_added: 8
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    The Bizible brand is fully absorbed into Adobe — bizible.com and www.bizible.com answer HTTP
+    301 on every path (including /robots.txt and every /.well-known/ path) and redirect to Adobe's
+    Marketo Measure product page, leaving only an Akamai CDN serving the bizible.js tracking tag as
+    a live first-party surface; no api./developers./docs.bizible.com subdomain resolves at all.
+  evidence:
+  - url: https://bizible.com/.well-known/agent-card.json
+    status: 301
+  - url: https://bizible.com/openapi.json
+    status: 301
+  - url: https://api.bizible.com/
+    status: 0
+  - url: https://cdn.bizible.com/scripts/bizible.js
+    status: 200
+  checked: '2026-08-13'
