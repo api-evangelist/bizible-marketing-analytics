@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script
+note: >-
+  The only public integration surface this company ships is client-side: a JavaScript tracking
+  tag distributed from its own CDN (cdn.bizible.com), with a small documented in-page API. There
+  is no server-side REST/GraphQL contract. Documentation for the component lives on Adobe
+  Experience League because Bizible now ships as Adobe Marketo Measure, but the component itself
+  is served from bizible.com's own host.
+families:
+- family: tracking-script
+  name: Marketo Measure JavaScript (bizible.js)
+  description: >-
+    Custom JavaScript added before the closing </head> tag on every page of a customer's site.
+    It records the online marketing interactions ("touchpoints") a prospect has with the
+    organization and forwards them to the Bizible collection host.
+  loader: https://cdn.bizible.com/scripts/bizible.js
+  collection_host: https://a.bizible.com
+  install_methods:
+  - method: hardcoded
+    snippet: >-
+      <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js" async=""></script>
+    docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script
+  - method: google-tag-manager
+    docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script-via-google-tag-manager
+    note: >-
+      Provider documents that GTM-loaded script is susceptible to latency and can miss roughly
+      3-5% of form submissions; GTM also strips the data- attributes used for consent config.
+  - method: adobe-launch-extension
+    docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-and-adobe/marketo-measure-integrations-with-adobe-launch
+    note: The Marketo Measure Launch extension loads bizible.js on pages carrying the Launch script.
+  configuration:
+  - attribute: data-consent-button-id
+    description: >-
+      Element id whose click event grants tracking consent. Set on the
+      <script id="bizible-settings"> tag.
+  - attribute: data-requires-user-consent
+    description: >-
+      When "true", bizible.js does not track until consent is granted through the JavaScript API.
+  javascript_api:
+    global: window.Bizible
+    bootstrap: >-
+      window['Bizible'] = window['Bizible'] || { _queue: [], Push: function (o, p) { this._queue.push({ type: o, data: p }); } };
+    methods:
+    - name: Bizible.Push
+      signature: Bizible.Push(type, data)
+      description: Queue a typed payload for the tracker.
+      types:
+      - type: Consent
+        example: Bizible.Push('Consent', true)
+        description: >-
+          Grant (true) or withdraw (false) tracking consent when data-requires-user-consent
+          is set. Documented for GDPR compliance.
+        docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/security-and-compliance/compliance-related-resources/ensuring-consent-for-gdpr-in-marketo-measure-js
+      - type: User
+        example: "Bizible.Push('User', { eMail: email })"
+        description: Associate the current visitor session with a known email address.
+    - name: Bizible.Attach
+      description: >-
+        Present in the delivered bundle alongside Push and the internal _queue/_callbacks
+        members. Not documented on the public Experience League pages, so no signature is
+        recorded here.
+      documented: false
+  best_practices: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/best-practices-for-implementing-marketo-measure-javascript
+  package: packages/bizible-marketing-analytics-packages.yml

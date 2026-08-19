@@ -1,0 +1,48 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script
+note: >-
+  Bizible publishes no server-side client libraries. Registry searches for a first-party
+  package returned nothing: npm search "bizible" (no first-party package), pypi.org/pypi/bizible/json
+  404, rubygems.org/api/v1/gems/bizible.json 404, and github.com/bizible is not a public
+  organization (GitHub API 403/absent). The only first-party distributed build is the
+  Marketo Measure (formerly Bizible) tracking script, served from the company's own CDN host
+  cdn.bizible.com and documented by Adobe on Experience League. Ownership: Bizible was acquired
+  by Marketo in 2018 and by Adobe, and the product ships today as Adobe Marketo Measure — but the
+  script itself is still served from bizible.com's own CDN, so this artifact is first-party to
+  this company's domain, not borrowed from a sibling product.
+packages:
+- language: javascript
+  registry: cdn
+  name: bizible.js
+  url: https://cdn.bizible.com/scripts/bizible.js
+  install: >-
+    <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js" async=""></script>
+  official: true
+  version: 4.26.08.05
+  published: '2026-08-07'
+  version_source: >-
+    Read from the served payload itself (b.s_JsVersion="4.26.08.05" inside the delivered
+    bundle); `published` is the CDN Last-Modified header on
+    https://cdn.bizible.com/scripts/bizible.js (Fri, 07 Aug 2026 06:59:19 GMT).
+  distribution: unpinned
+  note: >-
+    The distribution URL carries no version segment and floats to latest, so a consumer cannot
+    pin or tell which build they are loading — the version above is only knowable by downloading
+    the file and reading an internal variable. There is no package-registry metadata endpoint to
+    query for this artifact. Actively maintained: HTTP 200, 68,594 bytes, served via Akamai
+    (cdn.bizible.com -> cdn.bizible.com.edgesuite.net), build dated August 2026.
+registries_checked:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=bizible
+  result: no first-party package
+- registry: pypi
+  url: https://pypi.org/pypi/bizible/json
+  status: 404
+- registry: rubygems
+  url: https://rubygems.org/api/v1/gems/bizible.json
+  status: 404
+- registry: github
+  url: https://api.github.com/orgs/bizible
+  status: 403
+  result: no public first-party organization

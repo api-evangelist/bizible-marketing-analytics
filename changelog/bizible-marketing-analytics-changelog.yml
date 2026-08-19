@@ -1,0 +1,47 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/release-notes/current
+url: https://experienceleague.adobe.com/en/docs/marketo-measure/using/release-notes/current
+ownership_note: >-
+  Bizible was acquired by Marketo in 2018 and now ships as Adobe Marketo Measure; Adobe's own
+  Experience League documentation titles the product "Marketo Measure (formerly Bizible)". These
+  are the successor product's release notes and are the only dated change record published for
+  this product line — the bizible.com domain 301-redirects and publishes none of its own.
+scheme: quarterly-product-release
+current_version: null
+current_version_note: >-
+  Releases are named by quarter, not by a semantic version. The one versioned artifact is the
+  tracking script build (bizible.js 4.26.08.05, CDN Last-Modified 2026-08-07) — see
+  packages/bizible-marketing-analytics-packages.yml.
+breaking_changes_flagged: true
+breaking_changes_note: >-
+  Deprecations are called out with effective dates and migration guidance in the release notes.
+entries:
+- version: Q4 Release
+  date: '2024-10'
+  breaking: false
+  highlights:
+  - Session Channel Carryover — previous session channels carry over within 7 days for Direct visits.
+  - Keyword ROI Dashboard for analyzing keyword performance across paid search platforms.
+  - Campaign and Campaign Member fields added to segment rules.
+  - CRM export error handling toggle pauses jobs on error (default enabled, activated October 1).
+- version: Q3 Release
+  date: '2024-06'
+  breaking: true
+  additions:
+  - Attributed Opportunity Dashboard tracking marketing contribution to pipeline.
+  - Marketo Engage cookie sync for Marketo Measure Ultimate customers.
+  - Boomerang Stages extended from Tier 3 to Tier 2 customers.
+  deprecations:
+  - Salesforce field deprecations — export jobs to Lead/Contact objects phased out to cut API cost ~10%.
+- version: Q2 Release
+  date: '2024-04'
+  breaking: true
+  additions:
+  - In-app pulse notifications for permission errors.
+  deprecations:
+  - Cross-Domain Tracking and View-through Attribution phased out by June 1 with third-party cookie deprecation.
+  - LinkedIn integration required re-authentication by May 20.
+window_note: >-
+  Recent window only, as captured from the current release-notes page. The live page is the
+  source of truth; no attempt was made to reconstruct full history.

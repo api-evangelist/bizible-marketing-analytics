@@ -1,0 +1,38 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/security-and-compliance/compliance-related-resources/ensuring-consent-for-gdpr-in-marketo-measure-js
+note: >-
+  There is no HTTP API here, so the usual API-shaped standards (OAuth2, OIDC, RFC 9457, JSON:API,
+  OData, pagination, idempotency) have nothing to conform to and are recorded as not applicable
+  rather than false. The one genuine, documented conformance surface is consent gating in the
+  client-side tracking script. No `Compliance` pointer is emitted: the provider publishes no
+  certification list or trust center of its own — the Experience League
+  /security-and-compliance/security-and-compliance landing page returns 404 and
+  probe-security-programs.py found no trust center or disclosure program on bizible.com.
+standards:
+- id: gdpr-consent
+  conforms: true
+  evidence: >-
+    bizible.js supports consent-gated tracking. With data-requires-user-consent="true" on the
+    <script id="bizible-settings"> tag the script does not track until Bizible.Push('Consent', true)
+    is called; Bizible.Push('Consent', false) withdraws it. An alternative data-consent-button-id
+    attribute binds consent to a click on a named element. Documented by the provider.
+  docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/security-and-compliance/compliance-related-resources/ensuring-consent-for-gdpr-in-marketo-measure-js
+not_applicable:
+- id: oauth2
+  reason: no HTTP API, no securitySchemes, no authorization surface
+- id: oidc
+  reason: /.well-known/openid-configuration probed on all four hosts — 301 or 403, never a document
+- id: rfc9457-problem-details
+  reason: no HTTP API and no OpenAPI to inspect for problem+json responses
+- id: openapi
+  reason: >-
+    no OpenAPI published anywhere. /openapi.json and /swagger.json probed on bizible.com,
+    www.bizible.com, cdn.bizible.com and a.bizible.com — 301 or 403 on every host; no
+    api./developers./docs. subdomain resolves.
+- id: asyncapi
+  reason: no event, streaming or webhook surface is published
+compliance_program:
+  published: false
+  evidence:
+  - {url: 'https://experienceleague.adobe.com/en/docs/marketo-measure/using/security-and-compliance/security-and-compliance', status: 404}

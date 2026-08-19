@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/release-notes/current
+brand_lifecycle:
+  original_name: Bizible
+  current_name: Adobe Marketo Measure
+  path: Bizible -> acquired by Marketo (2018) -> Adobe -> renamed Marketo Measure
+  domain_status: >-
+    bizible.com and www.bizible.com answer HTTP 301 for every path and redirect to
+    https://business.adobe.com/products/marketo/bizible.html. Documentation moved to
+    Adobe Experience League. The only bizible.com surface still serving content is the
+    tracking CDN (cdn.bizible.com) and its collection host (a.bizible.com).
+  evidence:
+  - {url: 'https://bizible.com/', status: 301, location: 'https://business.adobe.com/products/marketo/bizible.html'}
+  - {url: 'https://cdn.bizible.com/scripts/bizible.js', status: 200}
+versioning:
+  scheme: quarterly-product-release
+  current: null
+  docs: https://experienceleague.adobe.com/en/docs/marketo-measure/using/release-notes/current
+  artifact_versioning:
+    artifact: bizible.js
+    scheme: date-derived build string
+    current: 4.26.08.05
+    observed: '2026-08-07'
+    note: >-
+      Version is only readable by downloading the bundle and reading b.s_JsVersion; the CDN URL
+      is unpinned, so a consumer cannot select or verify a build.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: >-
+    NO PUBLISHED DEPRECATION POLICY. Individual deprecations are announced in the quarterly
+    release notes with effective dates (Salesforce Lead/Contact export jobs; Cross-Domain
+    Tracking and View-through Attribution retired with third-party cookies), but there is no
+    standing policy page and no RFC 8594 Sunset/Deprecation header surface to test — there is
+    no HTTP API. No `Deprecation` pointer is emitted.
+  observed_deprecations:
+  - {item: Salesforce export jobs to Lead/Contact objects, announced: '2024-06'}
+  - {item: Cross-Domain Tracking, effective: '2024-06-01'}
+  - {item: View-through Attribution, effective: '2024-06-01'}
+sla:
+  url: null
+status_page:
+  url: null
+  note: >-
+    status.adobe.com returned HTTP 200 but is fully client-side rendered — the served HTML
+    contains no component list, so we could not verify that Marketo Measure is a listed
+    component. No `StatusPage` pointer is emitted rather than assert an unverified one.
+  evidence:
+  - {url: 'https://status.adobe.com/', status: 200, note: 'JS-rendered; no component names in served HTML'}
+deprecated_operations: []
+deprecated_operations_note: No OpenAPI exists for this provider, so no operation-level deprecations can be derived.

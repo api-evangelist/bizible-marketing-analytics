@@ -1,0 +1,58 @@
+# Bizible Marketing Analytics
+
+> Bizible was a B2B marketing attribution and revenue analytics platform that connected marketing
+> activity to pipeline and revenue across advertising, web, CRM, and marketing-automation channels.
+> Acquired by Marketo in 2018 and subsequently by Adobe, the product ships today as Adobe Marketo
+> Measure (formerly Bizible). The bizible.com domain 301-redirects to Adobe and its product
+> documentation lives on the Adobe Experience League. There is no standalone public developer
+> portal, OpenAPI, GraphQL SDL, MCP server, or API reference for this brand.
+
+## What this company actually exposes
+
+The only public, machine-touchable surface is a client-side JavaScript tracking tag served from
+Bizible's own CDN, with a two-call in-page API. There is no server-side HTTP API to call.
+
+- [Marketo Measure JavaScript (bizible.js)](https://cdn.bizible.com/scripts/bizible.js): The
+  tracking script, added before the closing `</head>` on every page. Build 4.26.08.05,
+  CDN Last-Modified 2026-08-07. The URL is unpinned — it always serves the latest build.
+- `window.Bizible.Push('Consent', true|false)`: grants or withdraws tracking consent when the
+  script tag carries `data-requires-user-consent="true"`.
+- `window.Bizible.Push('User', { eMail: email })`: associates the current visitor with a known
+  email address.
+- Collection host: `https://a.bizible.com` — where the tag posts touchpoint data. Anonymous
+  requests are refused (HTTP 403); there is no documented request/response contract.
+
+## Docs
+
+- [Adobe Marketo Measure documentation](https://experienceleague.adobe.com/en/docs/marketo-measure/using/home)
+- [Adding the Marketo Measure script](https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script)
+- [Adding the script via Google Tag Manager](https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script-via-google-tag-manager)
+- [Best practices for implementing Marketo Measure JavaScript](https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/best-practices-for-implementing-marketo-measure-javascript)
+- [Ensuring consent for GDPR in Marketo Measure JS](https://experienceleague.adobe.com/en/docs/marketo-measure/using/security-and-compliance/compliance-related-resources/ensuring-consent-for-gdpr-in-marketo-measure-js)
+- [Marketo Measure and Adobe Launch](https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-and-adobe/marketo-measure-integrations-with-adobe-launch)
+- [Marketo Measure Ultimate overview](https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-ultimate/marketo-measure-ultimate-overview)
+- [Release notes](https://experienceleague.adobe.com/en/docs/marketo-measure/using/release-notes/current)
+
+## Artifacts in this profile
+
+- [Packages](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/packages/bizible-marketing-analytics-packages.yml)
+- [Embedded components](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/components/bizible-marketing-analytics-components.yml)
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/changelog/bizible-marketing-analytics-changelog.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/lifecycle/bizible-marketing-analytics-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/conformance/bizible-marketing-analytics-conformance.yml)
+- [Plans and pricing](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/plans/bizible-marketing-analytics-plans-pricing.yml)
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/rate-limits/bizible-marketing-analytics-rate-limits.yml)
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/well-known/bizible-marketing-analytics-well-known.yml)
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/security/bizible-marketing-analytics-domain-security.yml)
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/bizible-marketing-analytics/refs/heads/main/apis.yml)
+
+## Recorded absences
+
+Probed 2026-08-13 and confirmed not present: OpenAPI/Swagger (`/openapi.json`, `/swagger.json` on
+bizible.com, www.bizible.com, cdn.bizible.com, a.bizible.com — 301 or 403), GraphQL, MCP server,
+A2A agent card (`/.well-known/agent-card.json` and `/.well-known/agent.json` — 301 or 403 on every
+host), `/llms.txt`, `/.well-known/security.txt`, OIDC discovery, api-catalog, first-party npm/PyPI/
+RubyGems packages, public GitHub organization, published pricing tiers, published rate limits.
+
+Generated by API Evangelist from the artifacts in this repository. This is an independent
+third-party profile, not a document published by the company.

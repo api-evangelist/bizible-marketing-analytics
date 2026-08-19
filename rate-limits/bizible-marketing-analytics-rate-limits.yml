@@ -1,0 +1,16 @@
+generated: '2026-08-13'
+method: searched
+source: https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script
+limit_count: 0
+limits: []
+headers: []
+note: >-
+  NO PUBLISHED RATE LIMITS, and no surface to carry them. This provider ships no HTTP API — the
+  only public integration point is a client-side tracking tag posting to a.bizible.com, which is
+  an Akamai collection endpoint that answers 403 to any anonymous request, so no rate-limit
+  headers could be observed on a live response either. The Experience League documentation
+  publishes no request quotas, windows, burst allowances, 429 behavior, or X-RateLimit-*/
+  RateLimit-*/Retry-After header contract for Marketo Measure. Honest zero.
+evidence:
+- {url: 'https://a.bizible.com/.well-known/security.txt', status: 403, note: 'collection host refuses anonymous requests; no rate-limit headers observable'}
+- {url: 'https://experienceleague.adobe.com/en/docs/marketo-measure/using/marketo-measure-tracking/setting-up-tracking/adding-marketo-measure-script', status: 200, note: 'tracking setup documentation states no limits'}

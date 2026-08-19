@@ -1,0 +1,74 @@
+generated: '2026-08-13'
+method: probed
+source: live GET probes, 2026-08-13
+note: >-
+  RECORDED ABSENCE — no pointer emitted. Every /.well-known/ path was probed on all four live
+  bizible.com hosts and not one returned a document. bizible.com and www.bizible.com answer a
+  blanket HTTP 301 for every path (including / and /robots.txt), redirecting to
+  https://business.adobe.com/products/marketo/bizible.html; the CDN and collection hosts
+  (cdn.bizible.com, a.bizible.com) are Akamai edges that answer 403 for every path other than
+  the tracking script itself. No 200, no document, therefore no WellKnown or SecurityTxt pointer
+  in apis.yml.
+hosts:
+- host: https://bizible.com
+  behavior: blanket 301 to https://business.adobe.com/products/marketo/bizible.html
+  documents:
+  - {path: /.well-known/security.txt, status: 301}
+  - {path: /.well-known/openid-configuration, status: 301}
+  - {path: /.well-known/oauth-authorization-server, status: 301}
+  - {path: /.well-known/api-catalog, status: 301}
+  - {path: /.well-known/ai-plugin.json, status: 301}
+  - {path: /.well-known/agent-card.json, status: 301}
+  - {path: /.well-known/agent.json, status: 301}
+  - {path: /llms.txt, status: 301}
+  - {path: /openapi.json, status: 301}
+  - {path: /swagger.json, status: 301}
+  - {path: /robots.txt, status: 301}
+- host: https://www.bizible.com
+  behavior: blanket 301 to https://business.adobe.com/products/marketo/bizible.html
+  documents:
+  - {path: /.well-known/security.txt, status: 301}
+  - {path: /.well-known/openid-configuration, status: 301}
+  - {path: /.well-known/oauth-authorization-server, status: 301}
+  - {path: /.well-known/api-catalog, status: 301}
+  - {path: /.well-known/ai-plugin.json, status: 301}
+  - {path: /.well-known/agent-card.json, status: 301}
+  - {path: /.well-known/agent.json, status: 301}
+  - {path: /llms.txt, status: 301}
+  - {path: /openapi.json, status: 301}
+  - {path: /swagger.json, status: 301}
+  - {path: /robots.txt, status: 301}
+- host: https://cdn.bizible.com
+  behavior: Akamai edge; 403 on everything except /scripts/bizible.js (200)
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+  - {path: /llms.txt, status: 403}
+  - {path: /openapi.json, status: 403}
+  - {path: /swagger.json, status: 403}
+  - {path: /robots.txt, status: 403}
+  - {path: /scripts/bizible.js, status: 200, content_type: application/x-javascript}
+- host: https://a.bizible.com
+  behavior: Akamai collection endpoint; 403 on every probed path
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+  - {path: /llms.txt, status: 403}
+  - {path: /openapi.json, status: 403}
+  - {path: /swagger.json, status: 403}
+  - {path: /robots.txt, status: 403}
+subdomains_absent:
+- {host: api.bizible.com, resolution: NXDOMAIN}
+- {host: developers.bizible.com, resolution: NXDOMAIN}
+- {host: docs.bizible.com, resolution: NXDOMAIN}
+- {host: app.bizible.com, resolution: NXDOMAIN}
